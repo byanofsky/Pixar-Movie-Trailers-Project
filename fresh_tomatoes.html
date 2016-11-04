@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            color: #FFF;
+            background-color: #000;
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #333;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        .well {
+            background: #333;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Pixar Movie Trailers</a>
+          </div>
+          <p class="navbar-text navbar-right">Created by Brandon Yanofsky</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="welcome-message center-block" style="max-width: 600px;">
+        <div class="center-block" style="max-width: 300px; margin-bottom: 10px;">
+          <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Welcome Message
+          </button>
+        </div>
+        <div class="collapse" id="collapseExample">
+          <div class="well">
+            Welcome to my Pixar Movie Trailers website. I built this for the final project of my Programming Foundations with Python class. The assignment is to use Python to create instances of a Movie class which stores movie title, trailer's YouTube URL, and poster image URL. It then runs through some given Python functions and outputs this website built within the Bootstrap framework.
+          </div>
+        </div>
+      </div>
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="NQu-153MnGQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Finding_Dory.jpg" width="220" height="342">
+    <h2>Finding Dory</h2>
+    <h3>2016</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="daFnEiLEx70" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/80/The_Good_Dinosaur_poster.jpg" width="220" height="342">
+    <h2>The Good Dinosaur</h2>
+    <h3>2015</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="_MC3XuMvsDI" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg" width="220" height="342">
+    <h2>Inside Out</h2>
+    <h3>2015</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="xBzPioph8CI" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/2a/Monsters_University_poster_3.jpg" width="220" height="342">
+    <h2>Monsters University</h2>
+    <h3>2013</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="TEHWDA_6e3M" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/9/96/Brave_Poster.jpg" width="220" height="342">
+    <h2>Brave</h2>
+    <h3>2012</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="oFTfAdauCOo" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/7f/Cars_2_Poster.jpg" width="220" height="342">
+    <h2>Cars 2</h2>
+    <h3>2011</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="JcpWXaA2qeg" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/69/Toy_Story_3_poster.jpg" width="220" height="342">
+    <h2>Toy Story 3</h2>
+    <h3>2010</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="pkqzFUhGPJg" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Up_%282009_film%29.jpg" width="220" height="342">
+    <h2>Up</h2>
+    <h3>2009</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ZisWjdjs-gM" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/WALL-Eposter.jpg" width="220" height="342">
+    <h2>Wall•E</h2>
+    <h3>2008</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="c3sBBRxDAqk" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/50/RatatouillePoster.jpg" width="220" height="342">
+    <h2>Ratatouille</h2>
+    <h3>2007</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="WGByijP0Leo" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/3/34/Cars_2006.jpg" width="220" height="342">
+    <h2>Cars</h2>
+    <h3>2006</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="eZbzbC9285I" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/e/ec/The_Incredibles.jpg" width="220" height="342">
+    <h2>The Incredibles</h2>
+    <h3>2004</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="wZdpNglLbt8" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg" width="220" height="342">
+    <h2>Finding Nemo</h2>
+    <h3>2003</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="cvOQeozL4S0" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/63/Monsters_Inc.JPG" width="220" height="342">
+    <h2>Monsters, Inc.</h2>
+    <h3>2001</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Lu0sotERXhI" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Toy_Story_2.jpg" width="220" height="342">
+    <h2>Toy Story 2</h2>
+    <h3>1999</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="vhGlMv3UCXA" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/A_Bug%27s_Life.jpg" width="220" height="342">
+    <h2>A Bug's Life</h2>
+    <h3>1998</h3>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="KYz2wyBy3kc" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" width="220" height="342">
+    <h2>Toy Story</h2>
+    <h3>1995</h3>
+</div>
+
+    </div>
+  </body>
+</html>
